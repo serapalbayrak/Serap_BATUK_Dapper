@@ -1,0 +1,65 @@
+﻿
+
+select Naam from Campussen
+
+
+alter Proc spGetAllCampussen
+As
+Begin
+select * from Campussen
+End
+Go
+
+
+[dbo].[spGetAllCampussen] -- sp'yi execute etme / cagirma
+-- ya da
+exec spGetAllCampussen
+
+
+select * from Campussen
+
+Create Proc spGetAllDocenten
+As
+Begin
+select Voornaam,Familienaam from Docenten
+End
+Go
+
+exec spGetAllDocenten
+
+[dbo].spGetAllDocenten 
+
+exec spGetAllDocenten
+
+Create proc spAddNewDocent
+@Voornaam nvarchar(50),
+@Familienaam nvarchar(50),
+@Wedde decimal,
+@CampusNr int
+as
+Begin
+Insert into Docenten(Voornaam, Familienaam, Wedde, CampusNr)
+values (@Voornaam, @Familienaam, @Wedde, @CampusNr)
+End
+go
+
+
+
+select * from Docenten
+
+Create proc spDeleteDocent
+@DocentNr int
+as
+Begin
+Delete  from Docenten where DocentNr=@DocentNr
+End
+
+[dbo].spDeleteDocent
+
+
+Create proc spFindDocent
+@DocentNr int
+as
+Begin
+Select * from Docenten where DocentNr=@DocentNr
+End
